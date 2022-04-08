@@ -20,6 +20,12 @@ export class TodoComponent implements OnInit {
     this.dataSource  =  result;
     });
   }
+  
+  refresh(){
+    this.apiService.readTodos().subscribe((result) => {
+      this.dataSource  =  result;
+    });
+  }
 
   // selectTodo(todo) {
   //   this.todo = todo;
@@ -31,9 +37,10 @@ export class TodoComponent implements OnInit {
 
   createTodo(f) {
     this.apiService.createTodo(f.value).subscribe((result) => {
-      console.log(result);
+      // if(error) console.error("HERE", error)
+      console.log("here!", result);
+      this.refresh()
     });
-
   }
 
   // deleteTodo(id) {

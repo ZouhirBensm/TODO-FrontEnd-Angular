@@ -40,8 +40,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-raised-button (click)="deleteTodo(element.id)" color="secondary">Delete
-                        Todo</button>
+                    <button mat-raised-button (click)="deleteTodo(element.id)" color="secondary">Delete Todo</button>
                     <button mat-raised-button (click)="selectTodo(element)" color="secondary">Select Todo</button>
 
                 </td>
