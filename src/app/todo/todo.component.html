@@ -15,6 +15,15 @@
                 <th mat-header-cell *matHeaderCellDef> Title </th>
                 <td mat-cell *matCellDef="let element"> {{element.title}} </td>
             </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button (click)="deleteTodo(element.id)" color="secondary">Delete Todo</button>
+                    <button mat-raised-button color="secondary">Done</button>
+                </td>
+                <!-- (click)="deleteTodo(element.id)" -->
+                <!-- (click)="selectTodo(element)" -->
+            </ng-container>
 
             <!-- <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Name </th>

@@ -9,7 +9,7 @@ import { Todo } from '../models/todo';
 })
 export class TodoComponent implements OnInit {
 
-  displayedColumns: string[] = ['id',  'title'];
+  displayedColumns: string[] = ['id',  'title', 'actions'];
   dataSource  = [];
   todo = {};
 
@@ -20,7 +20,7 @@ export class TodoComponent implements OnInit {
     this.dataSource  =  result;
     });
   }
-  
+
   refresh(){
     this.apiService.readTodos().subscribe((result) => {
       this.dataSource  =  result;
@@ -43,11 +43,12 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  // deleteTodo(id) {
-  //   this.apiService.deleteTodo(id).subscribe((result) => {
-  //     console.log(result);
-  //   });
-  // }
+  deleteTodo(id) {
+    this.apiService.deleteTodo(id).subscribe((result) => {
+      console.log(result);
+      this.refresh()
+    });
+  }
 
   // updateTodo(f) {
   //   // tslint:disable-next-line:no-string-literal

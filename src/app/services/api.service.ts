@@ -23,8 +23,8 @@ export class ApiService {
   //   return this.httpClient.put<Todo>(`${this.API_SERVER}/todos/${todo.id}/update`, todo);
   // }
 
-  // public deleteTodo(id: number) {
-  //   return this.httpClient.delete(`${this.API_SERVER}/todos/${id}/delete`);
-  // }
+  public deleteTodo(id: number) {
+    return this.httpClient.delete(`${this.API_SERVER}/todos/${id}/delete`);
+  }
 
 }
