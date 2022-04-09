@@ -18,6 +18,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button (click)="goTo(element.id)" color="secondary">More Detail</button>
                     <button mat-raised-button (click)="deleteTodo(element.id)" color="secondary">Delete Todo</button>
                     <button mat-raised-button color="secondary">Done</button>
                 </td>
@@ -74,6 +75,15 @@
                 <input matInput placeholder="Title" name="title" [(ngModel)]="todo.title" required>
             </mat-form-field>
             
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Task Deadline</mat-label>
+                <input matInput name="date_dn" [(ngModel)]="todo.date_dn" required [matDatepicker]="picker2">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            </mat-form-field>
+
+
             <!-- <mat-form-field>
                 <input matInput placeholder="Name" name="name" [(ngModel)]="todo.name" required>
             </mat-form-field>

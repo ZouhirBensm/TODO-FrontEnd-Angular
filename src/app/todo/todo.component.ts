@@ -36,6 +36,9 @@ export class TodoComponent implements OnInit {
   // }
 
   createTodo(f) {
+    f.value.date_cr = new Date()
+    f.value.status = 1
+    console.log("here!", f.value.date_dn, f.value.date_cr);
     this.apiService.createTodo(f.value).subscribe((result) => {
       // if(error) console.error("HERE", error)
       console.log("here!", result);
@@ -48,6 +51,10 @@ export class TodoComponent implements OnInit {
       console.log(result);
       this.refresh()
     });
+  }
+
+  goTo(id) {
+    console.log(id)
   }
 
   // updateTodo(f) {
