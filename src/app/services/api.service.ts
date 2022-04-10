@@ -11,10 +11,10 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public readTodos(search? : string) {
-    console.log("Before Api call", search)
-    if (search) {
-      return this.httpClient.get<Todo[]>(`${this.API_SERVER}?seach=${search}`);
+  public readTodos(term? : string) {
+    console.log("Before Api call", term)
+    if (term) {
+      return this.httpClient.get<Todo[]>(`${this.API_SERVER}?term=${term}`);
     } else {
       return this.httpClient.get<Todo[]>(`${this.API_SERVER}`);
     }

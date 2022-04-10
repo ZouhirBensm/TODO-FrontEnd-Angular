@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Todo } from '../models/todo';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -14,7 +14,13 @@ export class TodoComponent implements OnInit {
   dataSource  = [];
   todo = {};
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(data => {
+      console.log("reading", data.search)
+      const search = data.search
+      this.refresh(search)
+    })
+  }
 
   ngOnInit() {
     this.apiService.readTodos().subscribe((result) => {
@@ -23,7 +29,6 @@ export class TodoComponent implements OnInit {
   }
 
   refresh(search? : string){
-
     this.apiService.readTodos(search).subscribe((result) => {
       this.dataSource  =  result;
     });
@@ -44,14 +49,16 @@ export class TodoComponent implements OnInit {
     this.apiService.createTodo(f.value).subscribe((result) => {
       // if(error) console.error("HERE", error)
       console.log("here!", result);
-      this.refresh()
+      this.dataSource.push(result)
+      this.dataSource = [...this.dataSource]
     });
   }
 
   deleteTodo(id) {
     this.apiService.deleteTodo(id).subscribe((result) => {
       console.log(result);
-      this.refresh()
+      // this.refresh()
+      this.dataSource = this.dataSource.filter(t => t.id !== id)
     });
   }
 
@@ -61,8 +68,8 @@ export class TodoComponent implements OnInit {
   }
 
   search(f) {
-    console.log(f.value)
-    this.refresh(f.value)
+    console.log(f.value.search)
+    f.value.search? this.router.navigate(['/'], { queryParams: { search: f.value.search } }): this.router.navigate(['/'])
   }
 
   // updateTodo(f) {
