@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Todo } from '../models/todo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -13,7 +14,7 @@ export class TodoComponent implements OnInit {
   dataSource  = [];
   todo = {};
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.apiService.readTodos().subscribe((result) => {
@@ -21,8 +22,9 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  refresh(){
-    this.apiService.readTodos().subscribe((result) => {
+  refresh(search? : string){
+
+    this.apiService.readTodos(search).subscribe((result) => {
       this.dataSource  =  result;
     });
   }
@@ -55,6 +57,12 @@ export class TodoComponent implements OnInit {
 
   goTo(id) {
     console.log(id)
+    this.router.navigate([`/${id}`]);
+  }
+
+  search(f) {
+    console.log(f.value)
+    this.refresh(f.value)
   }
 
   // updateTodo(f) {

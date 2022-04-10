@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { TodoComponent } from './todo/todo.component';
+import { DetailComponent } from './detail/detail.component';
+import { DoneComponent } from './done/done.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    DetailComponent,
+    DoneComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { TodoComponent } from './todo/todo.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

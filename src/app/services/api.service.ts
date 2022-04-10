@@ -11,12 +11,17 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public readTodos() {
-    return this.httpClient.get<Todo[]>(`${this.API_SERVER}/todos`);
+  public readTodos(search? : string) {
+    console.log("Before Api call", search)
+    if (search) {
+      return this.httpClient.get<Todo[]>(`${this.API_SERVER}?seach=${search}`);
+    } else {
+      return this.httpClient.get<Todo[]>(`${this.API_SERVER}`);
+    }
   }
 
   public createTodo(todo: Todo) {
-    return this.httpClient.post<Todo>(`${this.API_SERVER}/todos/create`, todo);
+    return this.httpClient.post<Todo>(`${this.API_SERVER}/create`, todo);
   }
 
   // public updateTodo(todo: Todo) {
@@ -24,7 +29,8 @@ export class ApiService {
   // }
 
   public deleteTodo(id: number) {
-    return this.httpClient.delete(`${this.API_SERVER}/todos/${id}/delete`);
+    return this.httpClient.delete(`${this.API_SERVER}/${id}/delete`);
   }
+
 
 }
