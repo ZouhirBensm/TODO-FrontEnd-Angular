@@ -32,8 +32,8 @@ export class ApiService {
     return this.httpClient.delete(`${this.API_SERVER}/${id}/delete`);
   }
 
-  public changeToDone(id: number) {
-    return this.httpClient.put(`${this.API_SERVER}/${id}/done`);
+  public changeToDone(todo: Todo) {
+    return this.httpClient.put(`${this.API_SERVER}/${todo.id}/done`, todo);
   }
 
 }

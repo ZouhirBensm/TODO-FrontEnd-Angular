@@ -23,9 +23,7 @@ export class TodoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.readTodos().subscribe((result) => {
-    this.dataSource  =  result;
-    });
+    this.refresh()
   }
 
   refresh(search? : string){
@@ -73,12 +71,12 @@ export class TodoComponent implements OnInit {
     f.value.search? this.router.navigate(['/'], { queryParams: { search: f.value.search } }): this.router.navigate(['/'])
   }
 
-  changeToDone(id) {
-    console.log("Done!", id)    
-    this.apiService.changeToDone(id).subscribe((result) => {
+  changeToDone(f) {
+    console.log("Done!", f)    
+    this.apiService.changeToDone(f).subscribe((result) => {
       console.log(result);
       // this.refresh()
-      // this.dataSource = this.dataSource.filter(t => t.id !== id)
+      // this.dataSource = this.dataSource.map(t => console.log(t))
     });
   }
 

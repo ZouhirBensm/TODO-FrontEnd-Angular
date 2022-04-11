@@ -40,7 +40,7 @@
                     <!-- <button mat-raised-button (click)="goTo(element.id)" color="secondary">More Detail</button> -->
                     <button mat-raised-button (click)="$event.stopPropagation();deleteTodo(element.id)" color="secondary">Delete Todo</button>
                     <!-- <button mat-raised-button (click)="$event.stopPropagation();changeToDone(element.id)" color="secondary">Done</button> -->
-                    <button mat-raised-button (click)="$event.stopPropagation();changeToDone(element.id)" color="secondary">Done</button>
+                    <button mat-raised-button (click)="$event.stopPropagation();changeToDone(element)" color="secondary">Done</button>
                     <!-- *ngIf="todo.id" -->
                 </td>
                 <!-- (click)="deleteTodo(element.id)" -->
