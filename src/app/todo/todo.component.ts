@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { Todo } from '../models/todo';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -75,7 +74,7 @@ export class TodoComponent implements OnInit {
   }
 
   changeToDone(f) {
-    console.log("Done!", f)    
+    console.log("Done!", f)
     this.apiService.changeToDone(f).subscribe((result) => {
       console.log(result);
       this.refresh()
