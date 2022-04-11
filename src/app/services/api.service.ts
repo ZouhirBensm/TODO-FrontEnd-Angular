@@ -20,6 +20,11 @@ export class ApiService {
     }
   }
 
+  
+  public readTodo(id: number) {
+    return this.httpClient.get<Todo[]>(`${this.API_SERVER}/${id}`);
+  }
+
   public createTodo(todo: Todo) {
     return this.httpClient.post<Todo>(`${this.API_SERVER}/create`, todo);
   }
@@ -35,5 +40,7 @@ export class ApiService {
   public changeToDone(todo: Todo) {
     return this.httpClient.put(`${this.API_SERVER}/${todo.id}/done`, todo);
   }
+
+
 
 }

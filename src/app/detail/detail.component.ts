@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-detail',
@@ -8,11 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailComponent implements OnInit {
   id: string
-  constructor(private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')
     console.log(this.id)
+
+    this.apiService.readTodo(Number(this.id)).subscribe((result) => {
+      console.log(result)
+    });
   }
 
 
