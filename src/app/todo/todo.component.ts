@@ -43,6 +43,7 @@ export class TodoComponent implements OnInit {
   // }
 
   createTodo(f) {
+    console.log("What is f? ", f.value)
     f.value.date_cr = new Date()
     f.value.status = 1
     console.log("here!", f.value.date_dn, f.value.date_cr);
@@ -70,6 +71,15 @@ export class TodoComponent implements OnInit {
   search(f) {
     console.log(f.value.search)
     f.value.search? this.router.navigate(['/'], { queryParams: { search: f.value.search } }): this.router.navigate(['/'])
+  }
+
+  changeToDone(id) {
+    console.log("Done!", id)    
+    this.apiService.changeToDone(id).subscribe((result) => {
+      console.log(result);
+      // this.refresh()
+      // this.dataSource = this.dataSource.filter(t => t.id !== id)
+    });
   }
 
   // updateTodo(f) {
