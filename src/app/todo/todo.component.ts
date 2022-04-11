@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Todo } from '../models/todo';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 @Component({
   selector: 'app-todo',
@@ -28,7 +29,10 @@ export class TodoComponent implements OnInit {
 
   refresh(search? : string){
     this.apiService.readTodos(search).subscribe((result) => {
-      this.dataSource  =  result;
+      console.log("to filter: ", result)
+      this.dataSource = result.filter((todo) => {
+        return todo.status !== 5
+      });
     });
   }
 
@@ -75,7 +79,7 @@ export class TodoComponent implements OnInit {
     console.log("Done!", f)    
     this.apiService.changeToDone(f).subscribe((result) => {
       console.log(result);
-      // this.refresh()
+      this.refresh()
       // this.dataSource = this.dataSource.map(t => console.log(t))
     });
   }
