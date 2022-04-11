@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Todo } from '../models/todo';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 @Component({
   selector: 'app-todo',
