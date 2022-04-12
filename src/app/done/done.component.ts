@@ -35,4 +35,9 @@ export class DoneComponent implements OnInit {
     });
   }
 
+  goTo(id) {
+    console.log(id)
+    this.router.navigate([`/${id}`]);
+  }
+
 }

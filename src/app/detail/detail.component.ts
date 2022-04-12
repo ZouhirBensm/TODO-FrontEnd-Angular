@@ -9,18 +9,23 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
-  todo: Todo
+  displayedColumns: string[] = ['key', 'value'];
+  dataSource: {}
   id: string
-  constructor(private apiService: ApiService,private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+
+  public orderByKey(a, b) {
+    return a.key;
+  }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')
     console.log(this.id)
 
     this.apiService.readTodo(Number(this.id)).subscribe((result) => {
-      console.log(result)
-      this.todo = result[0];
-      console.log(this.todo)
+      console.log("result", result)
+      this.dataSource = result[0];
+      console.log("datasource", this.dataSource)
     });
   }
 
