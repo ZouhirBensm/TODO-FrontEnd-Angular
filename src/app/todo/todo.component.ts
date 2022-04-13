@@ -54,6 +54,7 @@ export class TodoComponent implements OnInit {
       this.length_of_todos = this.dataSource.length
 
       console.log("stuff: ", type, this.length_of_todos, this.page_index, this.page_size, this.previous_page_index)
+      console.log("why: ", (this.page_index? this.page_index: 0))
       switch (type) {
         case 1:
           this.data_displayed = this.dataSource.slice(0,3)
@@ -130,9 +131,9 @@ export class TodoComponent implements OnInit {
       console.log(this.page_index)
       this.OnPageChange({
         length: this.length_of_todos,
-        pageIndex: this.page_index,
-        pageSize: this.page_size,
-        previousPageIndex: this.previous_page_index
+        pageIndex: (this.page_index? this.page_index: 0),
+        pageSize: (this.page_size? this.page_size: 3),
+        previousPageIndex: (this.previous_page_index? this.previous_page_index: 0)
       })
 
       // console.log("Length of data that will be paginated", this.dataSource.length)
