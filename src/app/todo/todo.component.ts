@@ -117,6 +117,7 @@ export class TodoComponent implements OnInit {
       // this.dataSource = [...this.dataSource]
       this.refresh(2)
       // console.log("Length of data that will be paginated", this.dataSource.length)
+      // Can be deleted
       this.length_of_todos = this.dataSource.length
     });
   }
@@ -152,7 +153,8 @@ export class TodoComponent implements OnInit {
   }
 
   changeToDone(f) {
-    // console.log("Done!", f)
+    console.log("Done!", f)
+    f.date_dn_clicked = new Date()
     this.apiService.changeToDone(f).subscribe((result) => {
       // console.log(result);
       

@@ -3,6 +3,7 @@ export class Todo {
     title: string;
     date_cr: Date;
     date_dn: Date;
+    date_dn_clicked: Date;
     status: number;
 }
 
