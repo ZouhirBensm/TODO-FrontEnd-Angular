@@ -41,8 +41,8 @@ export class ApiService {
     return this.httpClient.put(`${this.API_SERVER}/${todo.id}/done`, todo);
   }
 
-  public changeStatus(todo: Todo, status: Number) {
-    return this.httpClient.put(`${this.API_SERVER}/${todo.id}/changestatus`, {todo: todo, status: status});
+  public changeStatusTitle(todo: Todo, status: number, title: string) {
+    return this.httpClient.put(`${this.API_SERVER}/${todo.id}/changestatustitle`, {todo: todo, status: status, title: title});
   }
 
 
