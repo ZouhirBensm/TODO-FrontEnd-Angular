@@ -42,9 +42,9 @@ export class TodoComponent implements OnInit {
     //   previousPageIndex: 0
     // }
     // console.log("ngOnInit ", this.event)
-    
+    this.reduce_index = 0
   }
-  
+
   refresh(search? : string){
     this.apiService.readTodos(search).subscribe((result) => {
       // console.log("to filter: ", result)
@@ -55,6 +55,25 @@ export class TodoComponent implements OnInit {
       this.data_displayed = this.dataSource.slice(0,3)
       // console.log("Length of data that will be paginated", this.dataSource.length)
       // console.log("display", this.data_displayed)
+    });
+
+  }
+  refresh2(search? : string){
+    this.apiService.readTodos(search).subscribe((result) => {
+      // console.log("to filter: ", result)
+      this.dataSource = result.filter((todo) => {
+        return todo.status !== 5
+      });
+      this.length_of_todos = this.dataSource.length
+      // this.data_displayed = this.dataSource.slice(0,3)
+      // console.log("Length of data that will be paginated", this.dataSource.length)
+      // console.log("display", this.data_displayed)
+      this.OnPageChange({
+        length: this.length_of_todos,
+        pageIndex: this.page_index,
+        pageSize: this.page_size,
+        previousPageIndex: this.previous_page_index
+      })
     });
 
   }
@@ -76,7 +95,8 @@ export class TodoComponent implements OnInit {
       // if(error) console.error("HERE", error)
       // console.log("here!", result);
       this.dataSource.push(result)
-      this.dataSource = [...this.dataSource]
+      // this.dataSource = [...this.dataSource]
+      this.refresh2()
       // console.log("Length of data that will be paginated", this.dataSource.length)
       this.length_of_todos = this.dataSource.length
     });
@@ -120,7 +140,7 @@ export class TodoComponent implements OnInit {
       // define event and reduce one
       // this.OnPageChange(event)
 
-      this.refresh()
+      this.refresh2()
       
       // define event and reduce one
       // this.OnPageChange(event)
