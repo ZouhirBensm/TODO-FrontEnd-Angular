@@ -28,13 +28,13 @@ export class TodoComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       // console.log("reading", data.search)
       const search = data.search
-      this.refresh(search)
+      this.refresh(1, search)
     })
   }
   
   
   ngOnInit() {
-    this.refresh()
+    this.refresh(1)
     // this.event = {
     //   length: this.length_of_todos,
     //   pageIndex: 0,
@@ -45,38 +45,56 @@ export class TodoComponent implements OnInit {
     this.reduce_index = 0
   }
 
-  refresh(search? : string){
+  refresh(type: number, search? : string){
     this.apiService.readTodos(search).subscribe((result) => {
       // console.log("to filter: ", result)
       this.dataSource = result.filter((todo) => {
         return todo.status !== 5
       });
       this.length_of_todos = this.dataSource.length
-      this.data_displayed = this.dataSource.slice(0,3)
+
+      console.log("stuff: ", type, this.length_of_todos, this.page_index, this.page_size, this.previous_page_index)
+      switch (type) {
+        case 1:
+          this.data_displayed = this.dataSource.slice(0,3)
+          
+          break;
+        case 2:
+          this.OnPageChange({
+            length: this.length_of_todos,
+            pageIndex: (this.page_index? this.page_index: 0),
+            pageSize: (this.page_size? this.page_size: 3),
+            previousPageIndex: (this.previous_page_index? this.previous_page_index: 0)
+          })
+          break;
+      
+        default:
+          break;
+      }
       // console.log("Length of data that will be paginated", this.dataSource.length)
       // console.log("display", this.data_displayed)
     });
 
   }
-  refresh2(search? : string){
-    this.apiService.readTodos(search).subscribe((result) => {
-      // console.log("to filter: ", result)
-      this.dataSource = result.filter((todo) => {
-        return todo.status !== 5
-      });
-      this.length_of_todos = this.dataSource.length
-      // this.data_displayed = this.dataSource.slice(0,3)
-      // console.log("Length of data that will be paginated", this.dataSource.length)
-      // console.log("display", this.data_displayed)
-      this.OnPageChange({
-        length: this.length_of_todos,
-        pageIndex: this.page_index,
-        pageSize: this.page_size,
-        previousPageIndex: this.previous_page_index
-      })
-    });
+  // refresh2(search? : string){
+  //   this.apiService.readTodos(search).subscribe((result) => {
+  //     // console.log("to filter: ", result)
+  //     this.dataSource = result.filter((todo) => {
+  //       return todo.status !== 5
+  //     });
+  //     this.length_of_todos = this.dataSource.length
+  //     // this.data_displayed = this.dataSource.slice(0,3)
+  //     // console.log("Length of data that will be paginated", this.dataSource.length)
+  //     // console.log("display", this.data_displayed)
+  //     this.OnPageChange({
+  //       length: this.length_of_todos,
+  //       pageIndex: this.page_index,
+  //       pageSize: this.page_size,
+  //       previousPageIndex: this.previous_page_index
+  //     })
+  //   });
 
-  }
+  // }
 
   // selectTodo(todo) {
   //   this.todo = todo;
@@ -96,7 +114,7 @@ export class TodoComponent implements OnInit {
       // console.log("here!", result);
       this.dataSource.push(result)
       // this.dataSource = [...this.dataSource]
-      this.refresh2()
+      this.refresh(2)
       // console.log("Length of data that will be paginated", this.dataSource.length)
       this.length_of_todos = this.dataSource.length
     });
@@ -140,7 +158,7 @@ export class TodoComponent implements OnInit {
       // define event and reduce one
       // this.OnPageChange(event)
 
-      this.refresh2()
+      this.refresh(2)
       
       // define event and reduce one
       // this.OnPageChange(event)
