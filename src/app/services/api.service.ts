@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public readTodos(term? : string) {
-    console.log("Before Api call", term)
+    // console.log("Before Api call", term)
     if (term) {
       return this.httpClient.get<Todo[]>(`${this.API_SERVER}?term=${term}`);
     } else {

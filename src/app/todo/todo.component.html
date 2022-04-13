@@ -23,7 +23,8 @@
         <mat-card-title>Todos</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+
+        <table mat-table [dataSource]="data_displayed" class="mat-elevation-z8" style="width: 100%;">
             <!-- Columns -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef>ID </th>
@@ -80,6 +81,13 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goTo(row.id)"></tr>
         </table>
+        
+        <mat-paginator 
+        [length]="this.length_of_todos"
+        [pageSize]="3" 
+        [pageSizeOptions]="[3, 4, 5]"
+        (page)= "OnPageChange($event)">
+        </mat-paginator>
 
     </mat-card-content>
 </mat-card>

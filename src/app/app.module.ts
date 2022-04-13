@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatPaginatorModule, MatPaginator } from '@angular/material';
 import { TodoComponent } from './todo/todo.component';
 import { DetailComponent } from './detail/detail.component';
 import { DoneComponent } from './done/done.component';
@@ -32,7 +32,9 @@ import { DoneComponent } from './done/done.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule    
+    MatSelectModule,
+    MatPaginatorModule,
+    // MatPaginator
   ],
   providers: [],
   bootstrap: [AppComponent]
