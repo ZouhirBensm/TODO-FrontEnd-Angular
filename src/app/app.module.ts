@@ -6,18 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatPaginatorModule, MatPaginator } from '@angular/material';
-import { TodoComponent } from './todo/todo.component';
-import { DetailComponent } from './detail/detail.component';
-import { DoneComponent } from './done/done.component';
+import { MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatTableModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatPaginatorModule,  } from '@angular/material';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
-    DetailComponent,
-    DoneComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +28,6 @@ import { DoneComponent } from './done/done.component';
     MatNativeDateModule,
     MatSelectModule,
     MatPaginatorModule,
-    // MatPaginator
   ],
   providers: [],
   bootstrap: [AppComponent]
